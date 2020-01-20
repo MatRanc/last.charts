@@ -7,3 +7,10 @@ save last.fm data to a spreadsheet
 work in progress
 
 uses last.fm api
+
+
+**To use:**
+
+1. ```python main.py```
+
+2. follow instructions
