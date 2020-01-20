@@ -12,8 +12,10 @@ api_key = "INSERT_KEY"
 # Insert a username
 username = "INSERT_USRNAME"
 
+
 # Take input for album range
 album_number_imput = input("Display my top ___ albums: ")
+
 
 # Error and exits if fields arent proper
 if api_key == "INSERT_KEY" :
@@ -29,6 +31,7 @@ if username == "INSERT_USRNAME" :
 top_albums_raw = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user="+username+"&api_key="+api_key+"&format=json")
 top_albums_json = json.loads(top_albums_raw.text)
 
+
 # Define the top albums function and make "number_top_albums_list" an argument that needs to be filled
 def top_albums(number_top_albums_list):
 	print("\nYour top "+number_top_albums_list+" albums are:\n")
@@ -42,6 +45,7 @@ def top_albums(number_top_albums_list):
 		# Display albums
 		print(top_album_artist+" - "+top_album_name)
 	print("\n")
+
 
 # Use the "top_albums" function and use the "album_number_imput" as "number_top_albums_list"
 top_albums(album_number_imput)
