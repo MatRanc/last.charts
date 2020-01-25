@@ -20,17 +20,36 @@ album_number_imput = input("Display my top ___ albums: ")
 # Error and exits if fields arent proper
 if api_key == "INSERT_KEY" :
 	print("Error 1: Insert an API key before using.\n")
-	sys.exit(1)
+	sys.exit()
 
 if username == "INSERT_USRNAME" :
 	print("Error 2: Inster a username before using.\n")
-	sys.exit(2)
+	sys.exit()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-------------------------------------------------------------
+# Top albums data
 
 # Get data with api, save it and load it as json
 top_albums_raw = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user="+username+"&api_key="+api_key+"&format=json")
 top_albums_json = json.loads(top_albums_raw.text)
-
 
 # Define the top albums function and make "number_top_albums_list" an argument that needs to be filled
 def top_albums(number_top_albums_list):
@@ -50,8 +69,13 @@ def top_albums(number_top_albums_list):
 # Use the "top_albums" function and use the "album_number_imput" as "number_top_albums_list"
 top_albums(album_number_imput)
 
+#--------------------------------------------------------------
 
-
+'''
+save alltime scrobbles by artist and album
+make a graph of albums vs scrobbles
+				artists over time
+'''
 
 #debug/display full link to view in web browser
 #print("https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user="+username+"&api_key="+api_key+"&format=json")
