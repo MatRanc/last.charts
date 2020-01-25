@@ -5,11 +5,6 @@
 
 save last.fm data to a spreadsheet
 
-uses last.fm api
-
-work in progress
-
-
 **USAGE INSTRUCTIONS:**
 
  1. **ADD USERNAME AND API KEY IN ```userkey.py``` !!**
