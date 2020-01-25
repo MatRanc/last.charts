@@ -1,16 +1,14 @@
+
 # last.save
 
 ![logo](https://raw.githubusercontent.com/MatRanc/last.save/master/resources/logo.png)
 
 save last.fm data to a spreadsheet
 
-work in progress
+**USAGE INSTRUCTIONS:**
 
-uses last.fm api
+ 1. **ADD USERNAME AND API KEY IN ```userkey.py``` !!**
 
+ 2. ```python main.py```
 
-**To use:**
-
-1. ```python main.py```
-
-2. follow instructions
+ 3. follow instructions
