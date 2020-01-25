@@ -1,20 +1,10 @@
-# https://www.last.fm/api/show/user.getTopAlbums
-
 #pip install json
 #pip install requets
 
 import requests
 import json
 import sys
-
-# Insert an api key
-api_key = "INSERT_KEY"
-# Insert a username
-username = "INSERT_USRNAME"
-
-
-# Take input for album range
-album_number_imput = input("Display my top ___ albums: ")
+from userkey import *
 
 
 # Error and exits if fields arent proper
@@ -27,25 +17,42 @@ if username == "INSERT_USRNAME" :
 	sys.exit()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# DEFINITIONS
 
 #-------------------------------------------------------------
-# Top albums data
+# Top artists data -- gets artist name and playcount
+
+# Get url for browser view
+#print("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+username+"&api_key="+api_key+"&format=json&limit=1000")
+
+# Gets json data and parses
+top_artists_raw = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+username+"&api_key="+api_key+"&format=json&limit=1000")
+top_artists_json = json.loads(top_artists_raw.text)
+
+# Get total number of artists and convert to an integer to avoid "list index out of range"
+total_artist_count = int(top_artists_json["topartists"]["@attr"]["total"])
+
+def artist_playcount_function():
+
+	# Loops through all artists
+	for x in range(0, total_artist_count):
+
+			# Get artist name and playcount through the json
+			artist_name = top_artists_json["topartists"]["artist"][x]["name"]
+			artist_playcount = top_artists_json["topartists"]["artist"][x]["playcount"]
+
+			# Only prints artists that have been played more than once -- also converts artist_playcount to an interger
+			if int(artist_playcount) >= 2:
+				print(artist_name)
+				print(artist_playcount)
+
+#-------------------------------------------------------------	
+
+#-------------------------------------------------------------
+# Top albums data -- gets top albums and artist name
+
+# Take input for album range
+# album_number_imput = input("Display my top ___ albums: ")
 
 # Get data with api, save it and load it as json
 top_albums_raw = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user="+username+"&api_key="+api_key+"&format=json")
@@ -67,9 +74,17 @@ def top_albums(number_top_albums_list):
 
 
 # Use the "top_albums" function and use the "album_number_imput" as "number_top_albums_list"
-top_albums(album_number_imput)
+# top_albums(album_number_imput)
 
 #--------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 '''
 save alltime scrobbles by artist and album
