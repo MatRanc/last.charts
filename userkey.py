@@ -1,5 +1,5 @@
 # Insert an api key
-api_key = "INSERT_KEY"
+api_key = "0a31601eb9614963207be95f8d5685cd"
 # Insert a username
 username = "INSERT_USRNAME"
 

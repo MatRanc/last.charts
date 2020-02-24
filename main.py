@@ -5,6 +5,7 @@ import requests
 import json
 import sys
 from userkey import *
+import csv
 
 
 # Error and exits if fields arent proper
@@ -77,9 +78,6 @@ def top_albums(number_top_albums_list):
 # top_albums(album_number_imput)
 
 #--------------------------------------------------------------
-
-
-
 
 
 
