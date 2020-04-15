@@ -5,8 +5,8 @@ import pandas as pd
 import requests as rq
 import json
 
-def load_top_artists(limit_number, time_period): #limt number = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
-    tic1 = time.perf_counter()
+def load_top_artists(artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
+    #tic1 = time.perf_counter()
 
     #declares array
     global top_artists_rawarray
@@ -15,7 +15,7 @@ def load_top_artists(limit_number, time_period): #limt number = 1-1000   ///   t
     top_artists_playcount_rawarray = []
 
     #loads from api and formats
-    top_artists_requests_json = json.loads(rq.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+lastfm_username+"&api_key="+lastfm_apikey+"&format=json&limit="+str(limit_number)+"&period="+time_period).text)
+    top_artists_requests_json = json.loads(rq.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+lastfm_username+"&api_key="+lastfm_apikey+"&format=json&limit="+str(artist_limit)+"&period="+time_period).text)
     top_artists_numberfetched = int(top_artists_requests_json["topartists"]["@attr"]["perPage"])
     print("Loaded user data from "+str(top_artists_numberfetched)+" artists")
 
@@ -29,8 +29,8 @@ def load_top_artists(limit_number, time_period): #limt number = 1-1000   ///   t
         top_artists_playcount_rawarray.append(artist_playcount)
 
     #tracks time it takes to process
-    toc1 = time.perf_counter()
-    print("\nCompleted in "+str((toc1-tic1))+" seconds\n")
+    #toc1 = time.perf_counter()
+    #print("\nCompleted in "+str((toc1-tic1))+" seconds\n")
 
 load_top_artists(50, "6month")
 
