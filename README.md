@@ -5,10 +5,11 @@
 
 save last.fm data to a spreadsheet
 
-**USAGE INSTRUCTIONS:**
+## Usage Instructions:
 
- 1. **Create a ```secret_key.py``` file with the following code  
- ```lastfm_apikey = "[INSERT API KEY]"
+ 1. **Create a `secret_key.py` file with the following code**  
+ ```
+ lastfm_apikey = "[INSERT API KEY]"
 
  lastfm_username = "[INSERT USERNAME]"
 ```   
