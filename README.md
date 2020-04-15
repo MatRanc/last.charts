@@ -1,5 +1,5 @@
 
-# last.save
+# last.charts
 
 ![logo](https://raw.githubusercontent.com/MatRanc/last.save/master/resources/logo.png)
 
@@ -7,8 +7,12 @@ save last.fm data to a spreadsheet
 
 **USAGE INSTRUCTIONS:**
 
- 1. **ADD USERNAME AND API KEY IN ```userkey.py``` !!**
+ 1. **Create a ```secret_key.py``` file with the following code  
+ ```lastfm_apikey = "[INSERT API KEY]"
+
+ lastfm_username = "[INSERT USERNAME]"
+```   
 
  2. ```python main.py```
 
- 3. follow instructions
+ 3. Data will be saved to an excel spreadsheet in the output folder.

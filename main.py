@@ -1,94 +1,47 @@
-#pip install json
-#pip install requets
+from secret_key import *
 
-import requests
+import time
+import pandas as pd
+import requests as rq
 import json
-import sys
-from userkey import *
-import csv
+
+def load_top_artists(limit_number, time_period): #limt number = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
+    tic1 = time.perf_counter()
+
+    #declares array
+    global top_artists_rawarray
+    global top_artists_playcount_rawarray
+    top_artists_rawarray = []
+    top_artists_playcount_rawarray = []
+
+    #loads from api and formats
+    top_artists_requests_json = json.loads(rq.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+lastfm_username+"&api_key="+lastfm_apikey+"&format=json&limit="+str(limit_number)+"&period="+time_period).text)
+    top_artists_numberfetched = int(top_artists_requests_json["topartists"]["@attr"]["perPage"])
+    print("Loaded user data from "+str(top_artists_numberfetched)+" artists")
+
+    for x in range(top_artists_numberfetched):
+        #adds artist name to array
+        artist_name = top_artists_requests_json["topartists"]["artist"][x]["name"]
+        top_artists_rawarray.append(artist_name)
+
+        #adds artist playcount to array
+        artist_playcount = top_artists_requests_json["topartists"]["artist"][x]["playcount"]
+        top_artists_playcount_rawarray.append(artist_playcount)
+
+    #tracks time it takes to process
+    toc1 = time.perf_counter()
+    print("\nCompleted in "+str((toc1-tic1))+" seconds\n")
+
+load_top_artists(50, "6month")
+
+top_artists = pd.Series(top_artists_rawarray)
+top_artists_playcount = pd.Series(top_artists_playcount_rawarray)
 
 
-# Error and exits if fields arent proper
-if api_key == "INSERT_KEY" :
-	print("Error 1: Insert an API key before using.\n")
-	sys.exit()
+#top_artists = pd.Series(["Kanye West", "Kid Cudi", "Travis Scott", "Chance the Rapper", "Pusha T"])
+#top_artists_playcount = pd.Series([3630,1927,428,310,281])
 
-if username == "INSERT_USRNAME" :
-	print("Error 2: Inster a username before using.\n")
-	sys.exit()
+artists_dataframe = pd.DataFrame({"Artists":top_artists,"Playcount":top_artists_playcount})
 
-
-# DEFINITIONS
-
-#-------------------------------------------------------------
-# Top artists data -- gets artist name and playcount
-
-# Get url for browser view
-#print("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+username+"&api_key="+api_key+"&format=json&limit=1000")
-
-# Gets json data and parses
-top_artists_raw = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+username+"&api_key="+api_key+"&format=json&limit=1000")
-top_artists_json = json.loads(top_artists_raw.text)
-
-# Get total number of artists and convert to an integer to avoid "list index out of range"
-total_artist_count = int(top_artists_json["topartists"]["@attr"]["total"])
-
-def artist_playcount_function():
-
-	# Loops through all artists
-	for x in range(0, total_artist_count):
-
-			# Get artist name and playcount through the json
-			artist_name = top_artists_json["topartists"]["artist"][x]["name"]
-			artist_playcount = top_artists_json["topartists"]["artist"][x]["playcount"]
-
-			# Only prints artists that have been played more than once -- also converts artist_playcount to an interger
-			if int(artist_playcount) >= 2:
-				print(artist_name)
-				print(artist_playcount)
-
-#-------------------------------------------------------------	
-
-#-------------------------------------------------------------
-# Top albums data -- gets top albums and artist name
-
-# Take input for album range
-# album_number_imput = input("Display my top ___ albums: ")
-
-# Get data with api, save it and load it as json
-top_albums_raw = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user="+username+"&api_key="+api_key+"&format=json")
-top_albums_json = json.loads(top_albums_raw.text)
-
-# Define the top albums function and make "number_top_albums_list" an argument that needs to be filled
-def top_albums(number_top_albums_list):
-	print("\nYour top "+number_top_albums_list+" albums are:\n")
-	for album_number in range(0, int(number_top_albums_list)):
-
-		# Get album artist
-		top_album_artist = top_albums_json["topalbums"]["album"][album_number]["artist"]["name"]
-		# Get album name
-		top_album_name = top_albums_json["topalbums"]["album"][album_number]["name"]
-
-		# Display albums
-		print(top_album_artist+" - "+top_album_name)
-	print("\n")
-
-
-# Use the "top_albums" function and use the "album_number_imput" as "number_top_albums_list"
-# top_albums(album_number_imput)
-
-#--------------------------------------------------------------
-
-
-
-
-
-
-'''
-save alltime scrobbles by artist and album
-make a graph of albums vs scrobbles
-				artists over time
-'''
-
-#debug/display full link to view in web browser
-#print("https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user="+username+"&api_key="+api_key+"&format=json")
+print(artists_dataframe)
+artists_dataframe.to_excel(r"D:\Development\last.charts\output\useroutput.xlsx")
