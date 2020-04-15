@@ -37,11 +37,10 @@ load_top_artists(50, "6month")
 top_artists = pd.Series(top_artists_rawarray)
 top_artists_playcount = pd.Series(top_artists_playcount_rawarray)
 
-
-#top_artists = pd.Series(["Kanye West", "Kid Cudi", "Travis Scott", "Chance the Rapper", "Pusha T"])
-#top_artists_playcount = pd.Series([3630,1927,428,310,281])
-
 artists_dataframe = pd.DataFrame({"Artists":top_artists,"Playcount":top_artists_playcount})
 
 print(artists_dataframe)
 artists_dataframe.to_excel(r"D:\Development\last.charts\output\useroutput.xlsx")
+
+#top_artists = pd.Series(["Kanye West", "Kid Cudi", "Travis Scott", "Chance the Rapper", "Pusha T"])
+#top_artists_playcount = pd.Series([3630,1927,428,310,281])
