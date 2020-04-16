@@ -19,7 +19,7 @@ def load_top_artists(artist_limit, time_period): #artist load limit = 1-1000   /
     #loads from api and formats
     top_artists_requests_json = json.loads(rq.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+lastfm_username+"&api_key="+lastfm_apikey+"&format=json&limit="+str(artist_limit)+"&period="+time_period).text)
     top_artists_numberfetched = int(top_artists_requests_json["topartists"]["@attr"]["perPage"])
-    print("Loaded user data from "+str(top_artists_numberfetched)+" artists")
+    print("Loaded user data from "+str(top_artists_numberfetched)+" artists\n")
 
     for x in range(top_artists_numberfetched):
         #adds artist name to array
