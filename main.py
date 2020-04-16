@@ -5,6 +5,14 @@ import pandas as pd
 import requests as rq
 import json
 
+from flask import Flask
+app = Flask(__name__)
+
+#need to edit
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
 lastfm_username = "MatRanc"
 
 def load_top_artists(artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
@@ -46,9 +54,17 @@ def load_top_artist_pandadb():
 load_top_artists(10, "3month")
 load_top_artist_pandadb()
 
-print(artists_dataframe)
+print("done")
 
 artists_dataframe.to_excel(r"D:\Development\last.charts\output\useroutput.xlsx")
 
 #top_artists = pd.Series(["Kanye West", "Kid Cudi", "Travis Scott", "Chance the Rapper", "Pusha T"])
 #top_artists_playcount = pd.Series([3630,1927,428,310,281])
+
+"""
+pip install:
+flask
+requests
+pandas
+openpyxl
+"""
