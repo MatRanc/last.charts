@@ -34,14 +34,20 @@ def load_top_artists(artist_limit, time_period): #artist load limit = 1-1000   /
     #toc1 = time.perf_counter()
     #print("\nCompleted in "+str((toc1-tic1))+" seconds\n")
 
-load_top_artists(50, "6month")
+def load_top_artist_pandadb():
+    global artists_dataframe
+    #sets panda series
+    top_artists = pd.Series(top_artists_rawarray)
+    top_artists_playcount = pd.Series(top_artists_playcount_rawarray)
+    #combines into single dataframe
+    artists_dataframe = pd.DataFrame({"Artists":top_artists,"Playcount":top_artists_playcount})
 
-top_artists = pd.Series(top_artists_rawarray)
-top_artists_playcount = pd.Series(top_artists_playcount_rawarray)
 
-artists_dataframe = pd.DataFrame({"Artists":top_artists,"Playcount":top_artists_playcount})
+load_top_artists(10, "3month")
+load_top_artist_pandadb()
 
 print(artists_dataframe)
+
 artists_dataframe.to_excel(r"D:\Development\last.charts\output\useroutput.xlsx")
 
 #top_artists = pd.Series(["Kanye West", "Kid Cudi", "Travis Scott", "Chance the Rapper", "Pusha T"])
