@@ -58,6 +58,13 @@ body {
   border-radius: 5px;
 }
 
+.daterangebox {
+  padding:4px;
+  border:2px solid rgba(235, 83, 54, 0.74);
+  border-radius: 5px;
+  background-color: white;
+}
+
 .submitbox {
   padding:5px;
   border:2px solid rgba(235, 83, 54, 0.74);
@@ -69,6 +76,22 @@ body {
   display: inline-block;
 }
 
+.daterangeboxdiv {
+  display: inline-block;
+}
+
 .submitboxdiv {
   display: inline-block;
+}
+
+.footer{
+  width:100%;
+  position:fixed;
+  bottom:0px;
+  background-color: orange;
+  height: auto;
+  padding: 25px;
+  font-family: "SF Pro Display Bold";
+  font-size: 25px;
+  text-align: center;
 }
