@@ -8,7 +8,16 @@
 
   <form action="/action_page.php">
     <div class="usernameboxdiv">
-      <input type="text" id="username" name="username" placeholder="username" class="usernamebox">
+      <input type="text" id="username" name="username" placeholder="last.fm username" class="usernamebox">
+    </div>
+    <div class="artistloadlimitboxdiv">
+      <select id="artistloadlimitbox" class="artistloadlimitbox">
+        <option value="10">Top 10 Artists</option>
+        <option value="25">Top 25 Artists</option>
+        <option value="50">Top 50 Artists</option>
+        <option value="100">Top 100 Artists</option>
+        <option value="250">Top 250 Artists</option>
+      </select>
     </div>
     <div class="daterangeboxdiv">
       <select id="daterange" class="daterangebox">

@@ -29,19 +29,21 @@ html {
 body {
   z-index: 3;
   height: 100;
-  background: linear-gradient(170deg, #FFFFFF, #FFDDDD, #FF7373);
+  background: linear-gradient(170deg, #fafafa, #d13131);
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
 .main_title {
-  font-family: "SF Pro Display Medium";
+  font-family: "SF Pro Display Bold";
   font-size: 64px;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.5px;
   margin-left: 40px;
   margin-top: 40px;
   margin-bottom: 20px;
+  color: #d13131;
+  text-shadow: 0px 1px 10px rgba(89, 89, 89, 0.35);
 }
 
 .pieimage {
@@ -65,6 +67,13 @@ body {
   background-color: white;
 }
 
+.artistloadlimitbox {
+  padding:4px;
+  border:2px solid rgba(235, 83, 54, 0.74);
+  border-radius: 5px;
+  background-color: white;
+}
+
 .submitbox {
   padding:5px;
   border:2px solid rgba(235, 83, 54, 0.74);
@@ -77,6 +86,10 @@ body {
 }
 
 .daterangeboxdiv {
+  display: inline-block;
+}
+
+.artistloadlimitboxdiv {
   display: inline-block;
 }
 
