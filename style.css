@@ -23,16 +23,18 @@
   src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Medium.otf);
 }
 
-html {
-    height: 100%;
-}
 body {
-  z-index: 3;
-  height: 100;
-  background: linear-gradient(170deg, #fafafa, #d13131);
-  margin: 0;
+  background: linear-gradient(170deg, #f5e9e9, #d13131);
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+html {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
 }
 
 .main_title {
@@ -43,7 +45,7 @@ body {
   margin-top: 40px;
   margin-bottom: 20px;
   color: #d13131;
-  text-shadow: 0px 1px 10px rgba(89, 89, 89, 0.35);
+  text-shadow: 0px 1px 10px white;
 }
 
 .pieimage {
@@ -97,8 +99,16 @@ body {
   display: inline-block;
 }
 
+.mainpiechart {
+  margin: 0 auto;
+  padding-left: 17%;
+  width: 100vh;
+  padding-top: 2.5vh;
+}
+
 .footer{
   width:100%;
+  left: 0;
   position:fixed;
   bottom:0px;
   background-color: orange;
