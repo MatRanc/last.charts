@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="static\css\style.css">
+
+</head><body>
+  <h1 class="main_title">last.charts</h1>
+
+  <form action="/action_page.php">
+    <div class="usernameboxdiv">
+      <input type="text" id="username" name="username" placeholder="last.fm username" class="usernamebox">
+    </div>
+    <div class="artistloadlimitboxdiv">
+      <select id="artistloadlimitbox" class="artistloadlimitbox">
+        <option value="10">Top 10 Artists</option>
+        <option value="25">Top 25 Artists</option>
+        <option value="50">Top 50 Artists</option>
+        <option value="100">Top 100 Artists</option>
+        <option value="250">Top 250 Artists</option>
+      </select>
+    </div>
+    <div class="daterangeboxdiv">
+      <select id="daterange" class="daterangebox">
+        <option value="7day">7 Days</option>
+        <option value="1month">1 Month</option>
+        <option value="3month">3 Months</option>
+        <option value="6month">6 Months</option>
+        <option value="12month">1 Year</option>
+      </select>
+    </div>
+    <div class="submitboxdiv">
+      <input type="submit" value="Submit" class="submitbox">
+    </div>
+  </form>
+
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Artist1',     11],
+          ['Artist2',      2],
+          ['Artist3',  2],
+          ['Artist4', 2],
+          ['Artist5',    7]
+        ]);
+
+        var options = {
+          title: 'Top Artists',
+          chartArea:{left:0,top:0,width:'100%',height:'100%'},
+          backgroundColor: "transparent",
+          colors: ['#e00d0d', '#e63e3e', '#ec6e6e', '#f4a0a0', '#f6b6b6']
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" class="mainpiechart" style="width: 1200px; height: 800px;"></div>
+  </body>
+
+  <footer class="footer">THIS WEBSITE IS CURRENTLY IN DEVELOPMENT. CERTAIN FEATURES WILL NOT WORK.</footer>
+
+</body></html>

@@ -1,0 +1,120 @@
+@font-face {
+  font-family: "SF Pro Display Bold";
+  src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Bold.otf);
+}
+
+@font-face {
+  font-family: "SF Pro Display Regular";
+  src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Regular.otf);
+}
+
+@font-face {
+  font-family: "SF Pro Display Thin";
+  src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Thin.otf);
+}
+
+@font-face {
+  font-family: "SF Pro Display Light";
+  src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Light.otf);
+}
+
+@font-face {
+  font-family: "SF Pro Display Medium";
+  src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Medium.otf);
+}
+
+body {
+  background: linear-gradient(170deg, #f5e9e9, #d13131);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+html {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.main_title {
+  font-family: "SF Pro Display Bold";
+  font-size: 64px;
+  letter-spacing: 1.5px;
+  margin-left: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #d13131;
+  text-shadow: 0px 1px 10px white;
+}
+
+.pieimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.usernamebox {
+  margin-left: 40px;
+  padding:5px;
+  border:2px solid rgba(235, 83, 54, 0.74);
+  border-radius: 5px;
+}
+
+.daterangebox {
+  padding:4px;
+  border:2px solid rgba(235, 83, 54, 0.74);
+  border-radius: 5px;
+  background-color: white;
+}
+
+.artistloadlimitbox {
+  padding:4px;
+  border:2px solid rgba(235, 83, 54, 0.74);
+  border-radius: 5px;
+  background-color: white;
+}
+
+.submitbox {
+  padding:5px;
+  border:2px solid rgba(235, 83, 54, 0.74);
+  border-radius: 5px;
+  background-color: white;
+}
+
+.usernameboxdiv {
+  display: inline-block;
+}
+
+.daterangeboxdiv {
+  display: inline-block;
+}
+
+.artistloadlimitboxdiv {
+  display: inline-block;
+}
+
+.submitboxdiv {
+  display: inline-block;
+}
+
+.mainpiechart {
+  margin: 0 auto;
+  padding-left: 17%;
+  width: 100vh;
+  padding-top: 2.5vh;
+}
+
+.footer{
+  width:100%;
+  left: 0;
+  position:fixed;
+  bottom:0px;
+  background-color: orange;
+  height: auto;
+  padding: 25px;
+  font-family: "SF Pro Display Bold";
+  font-size: 25px;
+  text-align: center;
+}

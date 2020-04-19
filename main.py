@@ -5,13 +5,13 @@ import pandas as pd
 import requests as rq
 import json
 
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 #need to edit
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def home():
+    return render_template("index.html")
 
 lastfm_username = "MatRanc"
 
@@ -57,6 +57,9 @@ load_top_artist_pandadb()
 print("done")
 
 artists_dataframe.to_excel(r"D:\Development\last.charts\output\useroutput.xlsx")
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 #top_artists = pd.Series(["Kanye West", "Kid Cudi", "Travis Scott", "Chance the Rapper", "Pusha T"])
 #top_artists_playcount = pd.Series([3630,1927,428,310,281])
