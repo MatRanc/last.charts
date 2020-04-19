@@ -100,9 +100,10 @@ html {
 }
 
 .mainpiechart {
+  width: 100vw;
+  height: 75vh;
   margin: 0 auto;
   padding-left: 17%;
-  width: 100vh;
   padding-top: 2.5vh;
 }
 
