@@ -10,10 +10,9 @@ save last.fm data to a spreadsheet
  1. **Create a `secret_key.py` file with the following code**  
  ```
  lastfm_apikey = "[INSERT API KEY]"
-
- lastfm_username = "[INSERT USERNAME]"
 ```   
+ 2. Look at the function and input desired settings. 
 
- 2. ```python main.py```
+ 3. ```python main.py```
 
- 3. Data will be saved to an excel spreadsheet in the output folder.
+ 4. Data will be saved to an excel spreadsheet in the output folder as well as printed in the terminal. 
