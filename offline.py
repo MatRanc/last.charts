@@ -7,9 +7,7 @@ import pandas as pd
 import requests as rq
 import json
 
-lastfm_username = "MatRanc"
-
-def load_top_artists(artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
+def load_top_artists(lastfm_username, artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
     #tic1 = time.perf_counter()
 
     #declares array
@@ -45,7 +43,7 @@ def load_top_artist_pandadb():
     artists_dataframe = pd.DataFrame({"Artists":top_artists,"Playcount":top_artists_playcount})
 
 
-load_top_artists(10, "3month")
+load_top_artists("MatRanc", 10, "3month")
 load_top_artist_pandadb()
 
 print(artists_dataframe)

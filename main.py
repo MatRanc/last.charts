@@ -5,17 +5,12 @@ import pandas as pd
 import requests as rq
 import json
 
-from flask import Flask, render_template
+#$env:FLASK_APP = "main.py"
+
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
-#need to edit
-@app.route('/')
-def home():
-    return render_template("index.html")
-
-lastfm_username = "MatRanc"
-
-def load_top_artists(artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
+def load_top_artists(lastfm_username, artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
     #tic1 = time.perf_counter()
 
     #declares array
@@ -51,12 +46,20 @@ def load_top_artist_pandadb():
     artists_dataframe = pd.DataFrame({"Artists":top_artists,"Playcount":top_artists_playcount})
 
 
-load_top_artists(10, "3month")
-load_top_artist_pandadb()
+#need to edit
+@app.route('/', methods=["GET", "POST"])
+def home():
 
-print("done")
+    if request.method == "POST":
+        username = str(request.form["username"])
+        artistloadlimit = int(request.form["artistloadlimit"])
+        daterange = str(request.form["daterange"])
 
-artists_dataframe.to_excel(r"D:\Development\last.charts\output\useroutput.xlsx")
+        result = load_top_artists(username, artistloadlimit, daterange)
+
+
+    return render_template("index.html", **globals())
+
 
 if __name__ == "__main__":
     app.run(debug=True)

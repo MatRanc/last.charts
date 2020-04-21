@@ -5,12 +5,12 @@
 </head><body>
   <h1 class="main_title">last.charts</h1>
 
-  <form action="/action_page.php">
+  <form method="post" action=".">
     <div class="usernameboxdiv">
       <input type="text" id="username" name="username" placeholder="last.fm username" class="usernamebox">
     </div>
     <div class="artistloadlimitboxdiv">
-      <select id="artistloadlimitbox" class="artistloadlimitbox">
+      <select id="artistloadlimitbox" name="artistloadlimit" class="artistloadlimitbox">
         <option value="10">Top 10 Artists</option>
         <option value="25">Top 25 Artists</option>
         <option value="50">Top 50 Artists</option>
@@ -19,7 +19,7 @@
       </select>
     </div>
     <div class="daterangeboxdiv">
-      <select id="daterange" class="daterangebox">
+      <select id="daterangebox" name="daterange" class="daterangebox">
         <option value="7day">7 Days</option>
         <option value="1month">1 Month</option>
         <option value="3month">3 Months</option>
@@ -41,7 +41,7 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
+          ['Artist', 'Scrobbles'],
           ['Artist1',     11],
           ['Artist2',      2],
           ['Artist3',  2],
