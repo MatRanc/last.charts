@@ -3,9 +3,7 @@ from secret_key import *
 import requests as rq
 import json
 
-#$env:FLASK_APP = "main.py"
-
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request #$env:FLASK_APP = "main.py"
 app = Flask(__name__)
 
 def load_top_artists(lastfm_username, artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
@@ -34,6 +32,8 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
 @app.route('/', methods=["GET", "POST"])
 def home():
 
+    load_top_artists("MatRanc", 10, "3month")
+
     if request.method == "POST":
         username = str(request.form["username"])
         artistloadlimit = int(request.form["artistloadlimit"])
@@ -41,8 +41,7 @@ def home():
 
         result = load_top_artists(username, artistloadlimit, daterange)
 
-
-    return render_template("index.html", **globals())
+    return render_template("index.html", top_artists_rawarray=json.dumps(top_artists_rawarray), top_artists_playcount_rawarray=json.dumps(top_artists_playcount_rawarray))
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -52,6 +51,6 @@ if __name__ == "__main__":
 pip install:
 flask
 requests
-pandas
 openpyxl
+json?
 """

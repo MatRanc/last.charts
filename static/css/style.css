@@ -23,12 +23,6 @@
   src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Medium.otf);
 }
 
-body {
-  background: linear-gradient(170deg, #f5e9e9, #d13131);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
 html {
     position:fixed;
     top:0;
@@ -114,7 +108,8 @@ html {
   bottom:0px;
   background-color: orange;
   height: auto;
-  padding: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-family: "SF Pro Display Bold";
   font-size: 25px;
   text-align: center;

@@ -40,14 +40,15 @@
 
       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Artist', 'Scrobbles'],
-          ['Artist1',     11],
-          ['Artist2',      2],
-          ['Artist3',  2],
-          ['Artist4', 2],
-          ['Artist5',    7]
-        ]);
+        var top_artists_rawarray = JSON.parse('{{ top_artists_rawarray|safe }}');
+        var top_artists_playcount_rawarray = (JSON.parse('{{ top_artists_playcount_rawarray|safe }}')).map(Number);
+
+        var data = new google.visualization.DataTable();
+        data.addColumn("string", "top_artists_rawarray");
+        data.addColumn("number", "top_artists_playcount_rawarray");
+
+        for(i = 0; i < top_artists_rawarray.length; i++)
+          data.addRow([top_artists_rawarray[i], top_artists_playcount_rawarray[i]]);
 
         var options = {
           title: 'Top Artists',
@@ -57,7 +58,6 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
       }
     </script>
