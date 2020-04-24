@@ -3,7 +3,7 @@ from secret_key import *
 import requests as rq
 import json
 
-from flask import Flask, render_template, request #$env:FLASK_APP = "main.py"
+from flask import Flask, render_template, request, json #$env:FLASK_APP = "main.py"
 app = Flask(__name__)
 
 def load_top_artists(lastfm_username, artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
@@ -16,19 +16,25 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
 
     #loads from api and formats
     top_artists_requests_json = json.loads(rq.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+lastfm_username+"&api_key="+lastfm_apikey+"&format=json&limit="+str(artist_limit)+"&period="+time_period).text)
-    top_artists_numberfetched = int(top_artists_requests_json["topartists"]["@attr"]["perPage"])
-    print("Loaded "+lastfm_username+"'s user data for "+str(top_artists_numberfetched)+" artists for a time period of "+time_period+"\n")
+    top_artists_total = int(top_artists_requests_json["topartists"]["@attr"]["total"])
+    top_artists_perpage = int(top_artists_requests_json["topartists"]["@attr"]["perPage"])
 
-    for x in range(top_artists_numberfetched):
+    #if user input for artist range is bigger than whats availible, to avoid error it will display the max availible number of artists
+    if top_artists_perpage <= top_artists_total:
+        top_artists_acceptablerange = top_artists_perpage
+    else: top_artists_acceptablerange = top_artists_total
+
+    print("Loaded data for "+lastfm_username+"'s top "+str(top_artists_acceptablerange)+" artists for a time period of "+time_period+"\n")
+
+    for x in range(top_artists_acceptablerange):
         #adds artist name to array
-        artist_name = top_artists_requests_json["topartists"]["artist"][x]["name"]
+        artist_name = (top_artists_requests_json["topartists"]["artist"][x]["name"]).replace("'", " ")
         top_artists_rawarray.append(artist_name)
 
-        #adds artist playcount to array
+        #adds artist playcount to arrays
         artist_playcount = top_artists_requests_json["topartists"]["artist"][x]["playcount"]
         top_artists_playcount_rawarray.append(artist_playcount)
 
-#need to edit
 @app.route('/', methods=["GET", "POST"])
 def home():
 
@@ -47,10 +53,16 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
-"""
-pip install:
+'''
+todo:
+all time artists + overall doesnt work: gives "SyntaxError: JSON.parse: expected ',' or ']' after array element at line 1 column 10348 of the JSON data" error.
+have html element above chart saying USERNAME's aritst over timeperiod or whatever
+'''
+
+'''
+required packages?:
 flask
 requests
 openpyxl
 json?
-"""
+'''

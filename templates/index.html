@@ -11,11 +11,11 @@
     </div>
     <div class="artistloadlimitboxdiv">
       <select id="artistloadlimitbox" name="artistloadlimit" class="artistloadlimitbox">
+        <option value="1000">All Artists</option>
         <option value="10">Top 10 Artists</option>
         <option value="25">Top 25 Artists</option>
         <option value="50">Top 50 Artists</option>
         <option value="100">Top 100 Artists</option>
-        <option value="250">Top 250 Artists</option>
       </select>
     </div>
     <div class="daterangeboxdiv">
@@ -25,6 +25,7 @@
         <option value="3month">3 Months</option>
         <option value="6month">6 Months</option>
         <option value="12month">1 Year</option>
+        <option value="overall">Overall</option>
       </select>
     </div>
     <div class="submitboxdiv">
@@ -40,7 +41,7 @@
 
       function drawChart() {
 
-        var top_artists_rawarray = JSON.parse('{{ top_artists_rawarray|safe }}');
+        var top_artists_rawarray = JSON.parse(('{{ top_artists_rawarray|safe }}'));
         var top_artists_playcount_rawarray = (JSON.parse('{{ top_artists_playcount_rawarray|safe }}')).map(Number);
 
         var data = new google.visualization.DataTable();
