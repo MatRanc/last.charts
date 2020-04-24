@@ -3,7 +3,7 @@
 
 ![logo](https://raw.githubusercontent.com/MatRanc/last.charts/master/resources/NEW_logo_2x.png)
 
-save last.fm data to a spreadsheet
+save last.fm data to a spreadsheet + its live website counterpart
 
 ## Usage Instructions:
 
@@ -13,6 +13,6 @@ save last.fm data to a spreadsheet
 ```   
  2. Look at the function and input desired settings. 
 
- 3. ```python main.py```
+ 3. ```python offline.py```
 
  4. Data will be saved to an excel spreadsheet in the output folder as well as printed in the terminal. 
