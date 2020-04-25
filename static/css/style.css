@@ -77,6 +77,10 @@ html {
   background-color: white;
 }
 
+.submitbox:hover {
+  background-color: rgba(235, 83, 54, 0.14);
+}
+
 .usernameboxdiv {
   display: inline-block;
 }
@@ -91,6 +95,16 @@ html {
 
 .submitboxdiv {
   display: inline-block;
+}
+
+.infoText {
+  font-family: "SF Pro Display Regular";
+  font-size: 21px;
+  padding-top: 10px;
+  margin-left: -5%;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
 }
 
 .mainpiechart {

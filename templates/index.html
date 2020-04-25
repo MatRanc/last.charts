@@ -7,7 +7,7 @@
 
   <form method="post" action=".">
     <div class="usernameboxdiv">
-      <input type="text" id="username" name="username" placeholder="last.fm username" class="usernamebox">
+      <input type="text" name="username" id="username" placeholder="last.fm username" class="usernamebox" autocomplete="on">
     </div>
     <div class="artistloadlimitboxdiv">
       <select id="artistloadlimitbox" name="artistloadlimit" class="artistloadlimitbox">
@@ -33,6 +33,8 @@
     </div>
   </form>
 
+  <p id="infoText" class="infoText">{{ username }}'s top {{ top_artists_acceptablerange_proper }} artists {{ daterange_proper }}</p>
+
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -53,9 +55,10 @@
 
         var options = {
           title: 'Top Artists',
+          pieHole:0,
           chartArea:{left:0,top:0,width:'100%',height:'100%'},
           backgroundColor: "transparent",
-          colors: ['#e00d0d', '#e63e3e', '#ec6e6e', '#f4a0a0', '#f6b6b6']
+          colors: ['#e00d0d', '#f12929', '#e63e3e', '#ec6e6e', '#f4a0a0', '#f6b6b6']
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
