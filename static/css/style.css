@@ -40,6 +40,20 @@ html {
   margin-bottom: 20px;
   color: #d13131;
   text-shadow: 0px 1px 10px white;
+  display: inline-block;
+}
+
+.title_div {
+  display: inline-block;
+}
+
+.beta_title_div {
+  display: inline-block;
+}
+
+.beta_title {
+  font-family: "SF Pro Display Regular";
+  margin: 0;
 }
 
 .pieimage {
@@ -107,6 +121,16 @@ html {
   text-align: center;
 }
 
+@media only screen and (max-width: 400px) {
+.mainpiechart {
+  width: 100vw;
+  height: 25vh;
+  margin: 0 auto;
+  padding-left: 17%;
+  padding-top: 2.5vh;
+}
+}
+
 .mainpiechart {
   width: 100vw;
   height: 75vh;
@@ -122,9 +146,9 @@ html {
   bottom:0px;
   background-color: orange;
   height: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   font-family: "SF Pro Display Bold";
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
 }
