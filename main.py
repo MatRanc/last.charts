@@ -39,7 +39,7 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
 @app.route('/', methods=["GET", "POST"])
 def home():
 
-    load_top_artists("MatRanc", 1000, "1month")
+    load_top_artists("MatRanc", 1000, "3month")
 
     #HAVE TO DEFINE IF NO CACHE (CODE BREAKS AND CAUSES ERROR 500 AS daterange AND OTHER VARIABLES ARE CALLED BEFORE DECLARE. THIS DUMMY CODE ALLOWS IT TO INITIALLY RUN THEN USES THE CACHED CODE)
     global daterange
