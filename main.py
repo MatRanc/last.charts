@@ -29,7 +29,7 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
 
     for x in range(top_artists_acceptablerange):
         #adds artist name to array
-        artist_name = (top_artists_requests_json["topartists"]["artist"][x]["name"]).replace("'", " ").replace("\"", " ") #whats with artists putting \ and ' in there name???
+        artist_name = (top_artists_requests_json["topartists"]["artist"][x]["name"]).replace("'", " ").replace("\\", " ").replace(","," ").replace("/", " ") #whats with artists putting \ and ' in there name???
         top_artists_rawarray.append(artist_name)
 
         #adds artist playcount to arrays
@@ -47,7 +47,7 @@ def home():
     global artistloadlimit
     artistloadlimit = 1000
     global username
-    username = "sev"
+    username = "LouisVuittonDon"
     global daterange_proper
     daterange_proper = "the past month"
 
@@ -92,12 +92,3 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-'''
-required packages?:
-flask
-requests
-openpyxl
-json?
-'''
