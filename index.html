@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="static\css\style.css">
 
 </head><body>
-  <h1 class="main_title">last.charts</h1>
+  <div class="title_div">
+    <h1 class="main_title">last.charts</h1>
+    <div class="beta_title_div">
+      <h2 class="beta_title">beta</h2>
+    </div>
+  </div>
 
-  <form action="/action_page.php">
+  <form method="post" action=".">
     <div class="usernameboxdiv">
-      <input type="text" id="username" name="username" placeholder="last.fm username" class="usernamebox">
+      <input type="text" name="username" id="username" placeholder="last.fm username" class="usernamebox" autocomplete="on">
     </div>
     <div class="artistloadlimitboxdiv">
-      <select id="artistloadlimitbox" class="artistloadlimitbox">
+      <select id="artistloadlimitbox" name="artistloadlimit" class="artistloadlimitbox">
         <option value="1000">All Artists</option>
         <option value="10">Top 10 Artists</option>
         <option value="25">Top 25 Artists</option>
@@ -19,7 +24,7 @@
       </select>
     </div>
     <div class="daterangeboxdiv">
-      <select id="daterange" class="daterangebox">
+      <select id="daterangebox" name="daterange" class="daterangebox">
         <option value="7day">7 Days</option>
         <option value="1month">1 Month</option>
         <option value="3month">3 Months</option>
@@ -32,6 +37,8 @@
       <input type="submit" value="Submit" class="submitbox">
     </div>
   </form>
+
+  <p id="infoText" class="infoText">{{ username }}'s top {{ top_artists_acceptablerange_proper }} artists {{ daterange_proper }}</p>
 
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -67,6 +74,6 @@
     <div id="piechart" class="mainpiechart"></div>
   </body>
 
-  <footer class="footer">THIS IS A STATIC PAGE FOR EARLY ACCESS TESTING. PLEASE VISIT [PUBLIC DEPLOY LINK] FOR FULL FUNCTIONALITY</footer>
+  <footer class="footer">THIS STATIC PAGE IS FOR EARLY ACCESS TESTING. USE LASTCHARTS.HEROKUAPP.COM FOR FULL FUNCTIONALITY</footer>
 
 </body></html>

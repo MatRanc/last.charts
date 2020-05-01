@@ -35,8 +35,8 @@ html {
   font-family: "SF Pro Display Bold";
   font-size: 64px;
   letter-spacing: -0.08px;
-  margin-left: 40px;
-  margin-top: 40px;
+  margin-left: 25px;
+  margin-top: 15px;
   margin-bottom: 20px;
   color: #d13131;
   text-shadow: 0px 1px 10px white;
@@ -64,7 +64,7 @@ html {
 }
 
 .usernamebox {
-  margin-left: 40px;
+  margin-left: 25px;
   padding:5px;
   border:2px solid rgba(235, 83, 54, 0.74);
   border-radius: 5px;
