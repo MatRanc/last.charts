@@ -49,7 +49,7 @@ def home():
     global username
     username = "LouisVuittonDon"
     global daterange_proper
-    daterange_proper = "the past month"
+    daterange_proper = "over the past month"
 
 
     if request.method == "POST":
