@@ -63,8 +63,11 @@ html {
   width: 40%;
 }
 
+.inputboxdiv {
+  padding-left: 25px;
+}
+
 .usernamebox {
-  margin-left: 25px;
   padding:5px;
   border:2px solid rgba(235, 83, 54, 0.74);
   border-radius: 5px;
@@ -121,19 +124,40 @@ html {
   text-align: center;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
 .mainpiechart {
   width: 100vw;
-  height: 25vh;
+  height: calc(75vh - 50px);
   margin: 0 auto;
   padding-left: 17%;
   padding-top: 2.5vh;
 }
+
+.main_title {
+  margin: 0;
+  font-size: 24px;
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-bottom: 10px;
+}
+
+.beta_title {
+  font-size: 15px;
+}
+
+.inputboxdiv {
+  padding-left: 0px;
+}
+
+.infoText {
+  font-size: 14px;
+}
+
 }
 
 .mainpiechart {
   width: 100vw;
-  height: 75vh;
+  height: calc(75vh - 50px);
   margin: 0 auto;
   padding-left: 17%;
   padding-top: 2.5vh;
@@ -148,7 +172,8 @@ html {
   height: auto;
   padding-top: 5px;
   padding-bottom: 5px;
+  margin: 0;
   font-family: "SF Pro Display Bold";
-  font-size: 20px;
+  font-size: 1.5vh;
   text-align: center;
 }
