@@ -117,7 +117,6 @@ html {
   text-align: center;
 }
 
-@media only screen and (max-width: 500px) {
 .mainpiechart {
   width: 100vw;
   height: calc(75vh - 50px);
@@ -126,41 +125,40 @@ html {
   padding-top: 2.5vh;
 }
 
-.main_title {
+.bottombar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.opensource_div {
+  background-color: #d1313167;
+  width: max-content;
+  padding: 5px;
+  padding-right: 10px;
+  border-radius: 20px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.githubicon {
+  height: 1em;
+}
+
+.opensource {
+  padding-left: 5px;
+  font-size: 1.5vh;
   margin: 0;
-  font-size: 24px;
-  padding-top: 2px;
-  padding-left: 2px;
-  padding-bottom: 10px;
+  text-decoration: none;
+  font-family: "SF Pro Display Medium";
 }
 
-.beta_title {
-  font-size: 15px;
-}
-
-.inputboxdiv {
-  padding-left: 0px;
-}
-
-.infoText {
-  font-size: 14px;
-}
-
-}
-
-.mainpiechart {
-  width: 100vw;
-  height: calc(75vh - 50px);
-  margin: 0 auto;
-  padding-left: 17%;
-  padding-top: 2.5vh;
-}
-
-.footer{
+.bugswarning {
   width:100%;
   left: 0;
-  position:fixed;
-  bottom:0px;
   background-color: orange;
   height: auto;
   padding-top: 5px;
@@ -170,3 +168,54 @@ html {
   font-size: 1.5vh;
   text-align: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 715px) {
+  .mainpiechart {
+    width: 100vw;
+    height: calc(75vh - 50px);
+    margin: 0 auto;
+    padding-left: 0;
+    padding-top: 0;
+  }
+  
+  .main_title {
+    margin: 0;
+    font-size: 24px;
+    padding-top: 2px;
+    padding-left: 2px;
+    padding-bottom: 10px;
+  }
+  
+  .beta_title {
+    font-size: 15px;
+  }
+  
+  .inputboxdiv {
+    padding-left: 0px;
+  }
+  
+  .infoText {
+    font-size: 14px;
+  }
+  
+  .githubicon {
+    display: none;
+  }
+  }
