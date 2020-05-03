@@ -145,7 +145,8 @@ html {
 }
 
 .githubicon {
-  height: 1em;
+  height: 1.3em;
+  padding-left: 3.5px;
 }
 
 .opensource {
