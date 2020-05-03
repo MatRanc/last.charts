@@ -26,15 +26,19 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
     else: top_artists_acceptablerange = top_artists_total
 
     print("Loaded data for "+lastfm_username+"'s top "+str(top_artists_acceptablerange)+" artists for a time period of "+time_period+"\n")
-
     for x in range(top_artists_acceptablerange):
-        #adds artist name to array
-        artist_name = (top_artists_requests_json["topartists"]["artist"][x]["name"]).replace("'", " ").replace("\\", " ").replace(","," ").replace("/", " ") #whats with artists putting \ and ' in there name???
-        top_artists_rawarray.append(artist_name)
+        #only adds artist to array if their playcount is greater than __
+        #make this a clickable option
+        #should probably declare the artist_name and artist_playcounts earlier
+        if int(top_artists_requests_json["topartists"]["artist"][x]["playcount"]) >= 2:
+            #adds artist name to array
+            artist_name = (top_artists_requests_json["topartists"]["artist"][x]["name"]).replace("'", " ").replace("\\", " ").replace(","," ").replace("/", " ") #whats with artists putting \ and ' in there name???
+            top_artists_rawarray.append(artist_name)
 
-        #adds artist playcount to arrays
-        artist_playcount = top_artists_requests_json["topartists"]["artist"][x]["playcount"]
-        top_artists_playcount_rawarray.append(artist_playcount)
+            #adds artist playcount to arrays
+            artist_playcount = top_artists_requests_json["topartists"]["artist"][x]["playcount"]
+            top_artists_playcount_rawarray.append(artist_playcount)
+        else: pass
 
 @app.route('/', methods=["GET", "POST"])
 def home():
