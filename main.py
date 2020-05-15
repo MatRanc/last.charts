@@ -3,7 +3,7 @@ from secret_key import *
 import requests as rq
 import json
 
-from flask import Flask, render_template, request, json #$env:FLASK_APP = "main.py"
+from flask import Flask, render_template, request, json, jsonify #$env:FLASK_APP = "main.py"
 app = Flask(__name__)
 
 def load_top_artists(lastfm_username, artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
@@ -92,7 +92,7 @@ def home():
         top_artists_acceptablerange_proper = ""
     else: top_artists_acceptablerange_proper = top_artists_acceptablerange
 
-    return render_template("index.html", top_artists_rawarray=top_artists_rawarray, top_artists_playcount_rawarray=top_artists_playcount_rawarray, username=username, top_artists_acceptablerange_proper=top_artists_acceptablerange_proper, daterange_proper=daterange_proper)
+    return render_template("index.html", top_artists_rawarray=json.dumps(top_artists_rawarray), top_artists_playcount_rawarray=json.dumps(top_artists_playcount_rawarray), username=username, top_artists_acceptablerange_proper=top_artists_acceptablerange_proper, daterange_proper=daterange_proper)
 
 if __name__ == "__main__":
     app.run(debug=True)

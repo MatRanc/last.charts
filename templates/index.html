@@ -45,16 +45,17 @@
 
   <div id="chart">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script>
-      var top_artists_rawarray = top_artists_rawarray
-      var top_artists_playcount_rawarray = top_artists_playcount_rawarray
+    <script type="text/javascript">
+
+      var top_artists_rawarray = JSON.parse(('{{ top_artists_rawarray|safe }}'));
+      var top_artists_playcount_rawarray = (JSON.parse('{{ top_artists_playcount_rawarray|safe }}')).map(Number);
 
       var options = {
-          series: [1,2],
+          series: top_artists_playcount_rawarray,
+          labels: top_artists_rawarray,
           chart: {
               type: 'pie',
           },
-          labels: ["he", "er"],
           responsive: [{
               breakpoint: 480,
               options: {
