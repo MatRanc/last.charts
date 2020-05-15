@@ -23,6 +23,8 @@
   src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Medium.otf);
 }
 
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
 html {
     position:fixed;
     top:0;
@@ -117,14 +119,6 @@ html {
   text-align: center;
 }
 
-.mainpiechart {
-  width: 100vw;
-  height: calc(75vh - 50px);
-  margin: 0 auto;
-  padding-left: 17%;
-  padding-top: 2.5vh;
-}
-
 .bottombar {
   position: fixed;
   bottom: 0;
@@ -170,7 +164,10 @@ html {
   text-align: center;
 }
 
-
+#chart {
+  max-width: 650px;
+  margin: 35px auto;
+}
 
 
 
@@ -188,13 +185,6 @@ html {
 
 
 @media only screen and (max-width: 715px) {
-  .mainpiechart {
-    width: 100vw;
-    height: calc(75vh - 50px);
-    margin: 0 auto;
-    padding-left: 0;
-    padding-top: 0;
-  }
   
   .main_title {
     margin: 0;

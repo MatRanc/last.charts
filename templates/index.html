@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="static\css\style.css">
+</head>
 
-</head><body>
+<body>
   <div class="title_div">
     <h1 class="main_title">last.charts</h1>
     <div class="beta_title_div">
@@ -42,47 +43,43 @@
 
   <p id="infoText" class="infoText">{{ username }}'s top {{ top_artists_acceptablerange_proper }} artists {{ daterange_proper }}</p>
 
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+  <div id="chart">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+      var top_artists_rawarray = top_artists_rawarray
+      var top_artists_playcount_rawarray = top_artists_playcount_rawarray
 
-      function drawChart() {
+      var options = {
+          series: [1,2],
+          chart: {
+              type: 'pie',
+          },
+          labels: ["he", "er"],
+          responsive: [{
+              breakpoint: 480,
+              options: {
+                  chart: {
+                  },
+                  legend: {
+                      position: 'bottom'
+                  }
+              }
+          }]
+      };
 
-        var top_artists_rawarray = JSON.parse(('{{ top_artists_rawarray|safe }}'));
-        var top_artists_playcount_rawarray = (JSON.parse('{{ top_artists_playcount_rawarray|safe }}')).map(Number);
-
-        var data = new google.visualization.DataTable();
-        data.addColumn("string", "top_artists_rawarray");
-        data.addColumn("number", "top_artists_playcount_rawarray");
-
-        for(i = 0; i < top_artists_rawarray.length; i++)
-          data.addRow([top_artists_rawarray[i], top_artists_playcount_rawarray[i]]);
-
-        var options = {
-          chartArea:{left:0,top:5,bottom:5,width:'100%'},
-          backgroundColor: "transparent",
-          colors: ['#e00d0d', '#f12929', '#e63e3e', '#ec6e6e', '#f4a0a0', '#f6b6b6']
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-      }
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
     </script>
-  </head>
-  <body>
-    <div id="piechart" class="mainpiechart"></div>
-  </body>
+  </div>
 
-<div class="bottombar">
-  <div class="opensource_div">
-    <img class="githubicon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png" alt="githubicon">
-    <a href="https://github.com/MatRanc/last.charts" class="opensource">This site is open-source; check it out!</a>
+  <div class="bottombar">
+    <div class="opensource_div">
+      <img class="githubicon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png" alt="githubicon">
+      <a href="https://github.com/MatRanc/last.charts" class="opensource">This site is open-source; check it out!</a>
+    </div>
+    <div>
+      <h1 class="bugswarning">THIS SITE IS IN BETA. PLEASE REPORT ANY BUGS TO mat#8595 ON DISCORD</h1>
+    </div>
   </div>
-  <div>
-    <h1 class="bugswarning">THIS SITE IS IN BETA. PLEASE REPORT ANY BUGS TO mat#8595 ON DISCORD</h1>
-  </div>
-</div>
 
 </body></html>

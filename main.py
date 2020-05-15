@@ -37,7 +37,7 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
 
             #adds artist playcount to arrays
             artist_playcount = top_artists_requests_json["topartists"]["artist"][x]["playcount"]
-            top_artists_playcount_rawarray.append(artist_playcount)
+            top_artists_playcount_rawarray.append(int(artist_playcount))
         else: pass
 
 @app.route('/', methods=["GET", "POST"])
@@ -92,7 +92,7 @@ def home():
         top_artists_acceptablerange_proper = ""
     else: top_artists_acceptablerange_proper = top_artists_acceptablerange
 
-    return render_template("index.html", top_artists_rawarray=json.dumps(top_artists_rawarray), top_artists_playcount_rawarray=json.dumps(top_artists_playcount_rawarray), username=username, top_artists_acceptablerange_proper=top_artists_acceptablerange_proper, daterange_proper=daterange_proper)
+    return render_template("index.html", top_artists_rawarray=top_artists_rawarray, top_artists_playcount_rawarray=top_artists_playcount_rawarray, username=username, top_artists_acceptablerange_proper=top_artists_acceptablerange_proper, daterange_proper=daterange_proper)
 
 if __name__ == "__main__":
     app.run(debug=True)
