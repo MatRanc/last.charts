@@ -119,6 +119,11 @@ html {
   text-align: center;
 }
 
+.piechart {
+  margin: 0;
+  max-width: 75vw;
+}
+
 .bottombar {
   position: fixed;
   bottom: 0;
@@ -162,11 +167,6 @@ html {
   font-family: "SF Pro Display Bold";
   font-size: 1.5vh;
   text-align: center;
-}
-
-#chart {
-  max-width: 650px;
-  margin: 35px auto;
 }
 
 

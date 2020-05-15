@@ -43,7 +43,7 @@
 
   <p id="infoText" class="infoText">{{ username }}'s top {{ top_artists_acceptablerange_proper }} artists {{ daterange_proper }}</p>
 
-  <div id="chart">
+  <div class="piechart" id="chart">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script type="text/javascript">
 
@@ -56,6 +56,9 @@
           chart: {
               type: 'pie',
           },
+          fill: {
+            colors: ['#FF0000', '#FF4500', '#FF6347', '#B22222', '#DC143C', '#CD5C5C', '#F08080', '#FA8072']
+          },
           responsive: [{
               breakpoint: 480,
               options: {
@@ -63,7 +66,7 @@
                   },
                   legend: {
                       position: 'bottom'
-                  }
+                  },
               }
           }]
       };
