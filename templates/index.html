@@ -53,11 +53,16 @@
       var options = {
           series: top_artists_playcount_rawarray,
           labels: top_artists_rawarray,
+          colors: ['#FF0000', '#FF4500', '#FF6347', '#B22222', '#DC143C', '#CD5C5C', '#F08080', '#FA8072'],
           chart: {
-              type: 'pie',
+              type: 'donut',
           },
-          fill: {
-            colors: ['#FF0000', '#FF4500', '#FF6347', '#B22222', '#DC143C', '#CD5C5C', '#F08080', '#FA8072']
+          plotOptions: {
+            pie: {
+              donut: {
+                size: '0%'
+              }
+            }
           },
           responsive: [{
               breakpoint: 480,
@@ -68,7 +73,7 @@
                       position: 'bottom'
                   },
               }
-          }]
+          }],
       };
 
       var chart = new ApexCharts(document.querySelector("#chart"), options);
