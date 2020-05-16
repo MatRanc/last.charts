@@ -1,10 +1,17 @@
-from secret_key import *
-
-import requests as rq
 import json
+import requests as rq
+from secret_key import *
+from flask import Flask, render_template, request
 
-from flask import Flask, render_template, request, json, jsonify #$env:FLASK_APP = "main.py"
 app = Flask(__name__)
+
+top_artists_rawarray = None
+top_artists_playcount_rawarray = None
+top_artists_acceptablerange = None
+daterange = None
+artistloadlimit = None
+username = None
+daterange_proper = None
 
 def load_top_artists(lastfm_username, artist_limit, time_period): #artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
 
@@ -12,8 +19,10 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
     global top_artists_rawarray
     global top_artists_playcount_rawarray
     global top_artists_acceptablerange
+    
     top_artists_rawarray = []
     top_artists_playcount_rawarray = []
+    top_artists_acceptablerange = 0
 
     #loads from api and formats
     top_artists_requests_json = json.loads(rq.get("http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user="+lastfm_username+"&api_key="+lastfm_apikey+"&format=json&limit="+str(artist_limit)+"&period="+time_period).text)
@@ -29,7 +38,6 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
     for x in range(top_artists_acceptablerange):
         #only adds artist to array if their playcount is greater than __
         #make this a clickable option
-        #should probably declare the artist_name and artist_playcounts earlier
         if int(top_artists_requests_json["topartists"]["artist"][x]["playcount"]) >= 2:
             #adds artist name to array
             artist_name = (top_artists_requests_json["topartists"]["artist"][x]["name"]).replace("'", " ").replace("\\", " ").replace(","," ").replace("/", " ") #whats with artists putting \ and ' in there name???
@@ -37,7 +45,7 @@ def load_top_artists(lastfm_username, artist_limit, time_period): #artist load l
 
             #adds artist playcount to arrays
             artist_playcount = top_artists_requests_json["topartists"]["artist"][x]["playcount"]
-            top_artists_playcount_rawarray.append(int(artist_playcount))
+            top_artists_playcount_rawarray.append(artist_playcount)
         else: pass
 
 @app.route('/', methods=["GET", "POST"])
@@ -47,12 +55,13 @@ def home():
 
     #HAVE TO DEFINE IF NO CACHE (CODE BREAKS AND CAUSES ERROR 500 AS daterange AND OTHER VARIABLES ARE CALLED BEFORE DECLARE. THIS DUMMY CODE ALLOWS IT TO INITIALLY RUN THEN USES THE CACHED CODE)
     global daterange
-    daterange = ""
     global artistloadlimit
-    artistloadlimit = 1000
     global username
-    username = "LouisVuittonDon"
     global daterange_proper
+
+    daterange = ""
+    artistloadlimit = 1000
+    username = "LouisVuittonDon"
     daterange_proper = "over the past month"
 
 
