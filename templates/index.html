@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html><head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="static\css\style.css">
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" http-equiv="content-type"
+    content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="static\css\style.css">
+
 </head>
 
 <body>
@@ -43,47 +48,45 @@
 
   <p id="infoText" class="infoText">{{ username }}'s top {{ top_artists_acceptablerange_proper }} artists {{ daterange_proper }}</p>
 
-  <div class="piechart" id="chart">
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
 
-      var top_artists_rawarray = JSON.parse(('{{ top_artists_rawarray|safe }}'));
-      var top_artists_playcount_rawarray = (JSON.parse('{{ top_artists_playcount_rawarray|safe }}')).map(Number);
+      function drawChart() {
 
-      var options = {
-          series: top_artists_playcount_rawarray,
-          labels: top_artists_rawarray,
-          colors: ['#FF0000', '#FF4500', '#FF6347', '#B22222', '#DC143C', '#CD5C5C', '#F08080', '#FA8072'],
-          chart: {
-              type: 'donut',
-          },
-          plotOptions: {
-            pie: {
-              donut: {
-                size: '0%'
-              }
-            }
-          },
-          responsive: [{
-              breakpoint: 480,
-              options: {
-                  chart: {
-                  },
-                  legend: {
-                      position: 'bottom'
-                  },
-              }
-          }],
-      };
+        var top_artists_rawarray = JSON.parse(('{{ top_artists_rawarray|safe }}'));
+        var top_artists_playcount_rawarray = (JSON.parse('{{ top_artists_playcount_rawarray|safe }}')).map(Number);
 
-      var chart = new ApexCharts(document.querySelector("#chart"), options);
-      chart.render();
+        var data = new google.visualization.DataTable();
+        data.addColumn("string", "top_artists_rawarray");
+        data.addColumn("number", "top_artists_playcount_rawarray");
+
+        for (i = 0; i < top_artists_rawarray.length; i++)
+          data.addRow([top_artists_rawarray[i], top_artists_playcount_rawarray[i]]);
+
+        var options = {
+          chartArea: { left: 0, top: 5, bottom: 5, width: '100%' },
+          backgroundColor: "transparent",
+          colors: ['#e00d0d', '#f12929', '#e63e3e', '#ec6e6e', '#f4a0a0', '#f6b6b6']
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
     </script>
-  </div>
+  </head>
+
+  <body>
+    <div id="piechart" class="mainpiechart"></div>
+  </body>
 
   <div class="bottombar">
     <div class="opensource_div">
-      <img class="githubicon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png" alt="githubicon">
+      <img class="githubicon"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png"
+        alt="githubicon">
       <a href="https://github.com/MatRanc/last.charts" class="opensource">This site is open-source; check it out!</a>
     </div>
     <div>
@@ -91,4 +94,6 @@
     </div>
   </div>
 
-</body></html>
+</body>
+
+</html>
