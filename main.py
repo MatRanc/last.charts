@@ -1,5 +1,6 @@
 import json
 import requests as rq
+import random
 from secret_key import *
 from flask import Flask, render_template, request
 
@@ -13,9 +14,64 @@ top_albums_playcount_rawarray = None
 top_albums_acceptablerange = None
 daterange = None
 artistloadlimit = None
-username = None
+display_username = None
 daterange_proper = None
 
+display_username_randomarray = [
+    "LouisVuittonDon",
+    "jxns",
+    "soleados",
+    "tyler",
+    "JQEtin",
+    "cudderrr",
+    "hurricane",
+    "byebyebaby",
+    "yyyyandHI",
+    "jerome",
+    "DarkFantasy",
+    "chicagosessions",
+    "newbody",
+    "robert",
+    "WSGx",
+    "westlakeranch",
+    "kennyy",
+    "rupert3",
+    "PIE",
+    "yedits",
+    "stanloona",
+    "sifruita",
+    "blonded",
+    "lastone",
+    "kimas",
+    "NeilOO",
+    "pop_xxs",
+    "slab_goose",
+    "10day",
+    "ovo",
+    "Shakeee",
+    "BVFxx",
+    "nikecrossfit",
+    "RAGER",
+    "EGODEATH",
+    "ALIENS",
+    "speedinbullet",
+]
+
+preload_user = [
+    "shady",
+    "meechymikko",
+    "st-silver",
+    "mynamesreed",
+    "MatRanc",
+    "acepear",
+    "Memecycle1",
+    "bladderweak",
+    "luce_goose",
+    "NoelThomas97",
+    "kuromugiwara",
+]
+
+random_preload_user = random.choice(preload_user)
 
 # artist load limit = 1-1000   ///   time period = overall, 7day, 1month, 3month, 6month, 12month
 def load_top_artists(lastfm_username, artist_limit, time_period):
@@ -96,25 +152,25 @@ def load_top_albums(lastfm_username, album_limit, time_period): #artist load lim
 @app.route('/', methods=["GET", "POST"])
 def home():
 
-    load_top_artists("MatRanc", 1000, "1month")
+    load_top_artists(random_preload_user, 60, "1month")
 
     # HAVE TO DEFINE IF NO CACHE (CODE BREAKS AND CAUSES ERROR 500 AS daterange AND OTHER VARIABLES ARE CALLED BEFORE DECLARE. THIS DUMMY CODE ALLOWS IT TO INITIALLY RUN THEN USES THE CACHED CODE)
     global daterange
     global artistloadlimit
-    global username
+    global display_username
     global daterange_proper
 
     daterange = ""
     artistloadlimit = 1000
-    username = "LouisVuittonDon"
+    display_username = str(random.choice(display_username_randomarray)+str(random.randint(0,62)))
     daterange_proper = "over the past month"
 
     if request.method == "POST":
-        username = str(request.form["username"])
+        display_username = str(request.form["username"])
         artistloadlimit = int(request.form["artistloadlimit"])
         daterange = str(request.form["daterange"])
 
-        result = load_top_artists(username, artistloadlimit, daterange)
+        result = load_top_artists(display_username, artistloadlimit, daterange)
 
     # converts short form from api into proper english
     if daterange == "7day":
@@ -151,7 +207,14 @@ def home():
     else:
         top_artists_acceptablerange_proper = top_artists_acceptablerange
 
-    return render_template("index.html", top_artists_rawarray=json.dumps(top_artists_rawarray), top_artists_playcount_rawarray=json.dumps(top_artists_playcount_rawarray), username=username, top_artists_acceptablerange_proper=top_artists_acceptablerange_proper, daterange_proper=daterange_proper)
+    return render_template(
+        "index.html", 
+        top_artists_rawarray=json.dumps(top_artists_rawarray), 
+        top_artists_playcount_rawarray=json.dumps(top_artists_playcount_rawarray), 
+        username=display_username, 
+        top_artists_acceptablerange_proper=top_artists_acceptablerange_proper, 
+        daterange_proper=daterange_proper
+    )
 
 
 if __name__ == "__main__":
