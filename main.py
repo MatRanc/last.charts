@@ -16,6 +16,8 @@ daterange = None
 artistloadlimit = None
 display_username = None
 daterange_proper = None
+uni_array_top_named = None
+uni_array_playcount = None
 
 display_username_randomarray = [
     "LouisVuittonDon",
@@ -152,25 +154,50 @@ def load_top_albums(lastfm_username, album_limit, time_period): #artist load lim
 @app.route('/', methods=["GET", "POST"])
 def home():
 
-    load_top_artists(random_preload_user, 60, "1month")
-
     # HAVE TO DEFINE IF NO CACHE (CODE BREAKS AND CAUSES ERROR 500 AS daterange AND OTHER VARIABLES ARE CALLED BEFORE DECLARE. THIS DUMMY CODE ALLOWS IT TO INITIALLY RUN THEN USES THE CACHED CODE)
     global daterange
     global artistloadlimit
     global display_username
     global daterange_proper
 
+    load_top_artists(random_preload_user, 60, "1month")
+    uni_array_top_named = top_artists_rawarray
+    uni_array_playcount = top_artists_playcount_rawarray
+
     daterange = ""
     artistloadlimit = 1000
     display_username = str(random.choice(display_username_randomarray)+str(random.randint(0,62)))
     daterange_proper = "over the past month"
 
+    '''
+    Problems:
+
+    ALBUM MODE:
+    fix line 55 to work with album mode
+    make "top_artists_acceptablerange_proper" useable with album mode too
+
+    Need to add something to dispaly either aritsts or albums on front end text
+
+    need to properly fix escape characters in the arrays. the hacky method isnt working well.
+
+    need to update variables in index.html
+    '''
+    
     if request.method == "POST":
         display_username = str(request.form["username"])
         artistloadlimit = int(request.form["artistloadlimit"])
         daterange = str(request.form["daterange"])
+        loadselect = str(request.form["loadselection"])
 
-        result = load_top_artists(display_username, artistloadlimit, daterange)
+        if loadselect == "artists":
+            result = load_top_artists(display_username, artistloadlimit, daterange)
+            uni_array_top_named = top_artists_rawarray
+            uni_array_playcount = top_artists_playcount_rawarray
+
+        if loadselect == "albums":
+            result = load_top_albums(display_username, artistloadlimit, daterange)
+            uni_array_top_named = top_albums_rawarray
+            uni_array_playcount = top_albums_playcount_rawarray
 
     # converts short form from api into proper english
     if daterange == "7day":
@@ -209,13 +236,12 @@ def home():
 
     return render_template(
         "index.html", 
-        top_artists_rawarray=json.dumps(top_artists_rawarray), 
-        top_artists_playcount_rawarray=json.dumps(top_artists_playcount_rawarray), 
+        top_artists_rawarray=json.dumps(uni_array_top_named), 
+        top_artists_playcount_rawarray=json.dumps(uni_array_playcount), 
         username=display_username, 
         top_artists_acceptablerange_proper=top_artists_acceptablerange_proper, 
         daterange_proper=daterange_proper
     )
-
 
 if __name__ == "__main__":
     app.run(debug=True)

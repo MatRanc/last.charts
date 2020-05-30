@@ -21,13 +21,19 @@
       <div class="usernameboxdiv">
         <input type="text" name="username" id="username" placeholder="last.fm username" class="usernamebox" autocomplete="on">
       </div>
+      <div class="loadselectionboxdiv">
+        <select id="loadselectionbox" name="loadselection" class="loadselectionbox">
+          <option value="artists">Artist Stats</option>
+          <option value="albums">Album Stats</option>
+        </select>
+      </div>
       <div class="artistloadlimitboxdiv">
         <select id="artistloadlimitbox" name="artistloadlimit" class="artistloadlimitbox">
-          <option value="1000">All Artists</option>
-          <option value="10">Top 10 Artists</option>
-          <option value="25">Top 25 Artists</option>
-          <option value="50">Top 50 Artists</option>
-          <option value="100">Top 100 Artists</option>
+          <option value="1000">Total Artists/Albums</option>
+          <option value="10">Top 10</option>
+          <option value="25">Top 25</option>
+          <option value="50">Top 50</option>
+          <option value="100">Top 100</option>
         </select>
       </div>
       <div class="daterangeboxdiv">

@@ -66,6 +66,13 @@ html {
   border-radius: 5px;
 }
 
+.loadselectionbox {
+  padding:4px;
+  border:2px solid rgba(235, 83, 54, 0.74);
+  border-radius: 5px;
+  background-color: white;
+}
+
 .daterangebox {
   padding:4px;
   border:2px solid rgba(235, 83, 54, 0.74);
@@ -92,6 +99,10 @@ html {
 }
 
 .usernameboxdiv {
+  display: inline-block;
+}
+
+.loadselectionboxdiv {
   display: inline-block;
 }
 
@@ -133,7 +144,6 @@ html {
 }
 
 .opensource_div {
-  background-color: #d1313167;
   width: max-content;
   padding: 5px;
   padding-right: 10px;
