@@ -28,17 +28,17 @@ display_username_randomarray = [
     "cudderrr",
     "hurricane",
     "byebyebaby",
-    "yyyyandHI",
-    "jerome",
+    "yandhiii",
+    "jerome5",
     "DarkFantasy",
     "chicagosessions",
     "newbody",
-    "robert",
+    "robert4",
     "WSGx",
     "westlakeranch",
     "kennyy",
     "rupert3",
-    "PIE",
+    "pie_",
     "yedits",
     "stanloona",
     "sifruita",
@@ -49,7 +49,7 @@ display_username_randomarray = [
     "pop_xxs",
     "slab_goose",
     "10day",
-    "ovo",
+    "ovo_",
     "Shakeee",
     "BVFxx",
     "nikecrossfit",
@@ -151,6 +151,22 @@ def load_top_albums(lastfm_username, album_limit, time_period): #artist load lim
             top_albums_playcount_rawarray.append(album_playcount)
         else: pass
 
+def custom_gen_number():
+
+    usr_randint = random.randint(0,100)
+
+    if usr_randint <= 40:
+        custom_gen_number = random.randint(1,100)
+    else: pass
+    if 40 < usr_randint <=50:
+        custom_gen_number = random.randint(90,99)
+    else:pass
+    if 50 < usr_randint <= 100:
+        custom_gen_number = ""
+    else:pass
+
+    return custom_gen_number
+
 @app.route('/', methods=["GET", "POST"])
 def home():
 
@@ -160,13 +176,13 @@ def home():
     global display_username
     global daterange_proper
 
-    load_top_artists(random_preload_user, 60, "1month")
+    load_top_artists(random_preload_user, 25, "1month")
     uni_array_top_named = top_artists_rawarray
     uni_array_playcount = top_artists_playcount_rawarray
 
     daterange = ""
     artistloadlimit = 1000
-    display_username = str(random.choice(display_username_randomarray)+str(random.randint(0,62)))
+    display_username = str(random.choice(display_username_randomarray) + str(custom_gen_number()))
     daterange_proper = "over the past month"
 
     '''
