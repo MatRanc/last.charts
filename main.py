@@ -1,3 +1,10 @@
+''' for 2.0 release:
+1neeed to make the little text at the top sync with if its showing artists or albums
+2fix escape characters
+3try and fix the mess of "None" at the beginning. it looks terrible.
+4come to terms that this code is bad.
+'''
+
 import json
 import requests as rq
 import random
@@ -184,20 +191,6 @@ def home():
     artistloadlimit = 1000
     display_username = str(random.choice(display_username_randomarray) + str(custom_gen_number()))
     daterange_proper = "over the past month"
-
-    '''
-    Problems:
-
-    ALBUM MODE:
-    fix line 55 to work with album mode
-    make "top_artists_acceptablerange_proper" useable with album mode too
-
-    Need to add something to dispaly either aritsts or albums on front end text
-
-    need to properly fix escape characters in the arrays. the hacky method isnt working well.
-
-    need to update variables in index.html
-    '''
     
     if request.method == "POST":
         display_username = str(request.form["username"])
