@@ -1,4 +1,4 @@
-''' for 2.0 release:
+''' for 1.0 release:
 1neeed to make the little text at the top sync with if its showing artists or albums
 2fix escape characters
 3try and fix the mess of "None" at the beginning. it looks terrible.
