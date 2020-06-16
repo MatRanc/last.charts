@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "SF Pro Display Bold";
+  src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Bold.otf);
+}
+
+@font-face {
+  font-family: "SF Pro Display Semibold";
+  src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Semibold.otf);
+}
+
+@font-face {
+  font-family: "SF Pro Display Medium";
+  src: url(https://matranc.github.io/assets/fonts/SF-Pro-Display-Medium.otf);
+}
+
+html {
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.container500 {
+  padding-left: 25%;
+  padding-top: 28vh;
+  max-width: 500px;
+}
+
+.title500 {
+  font-family: "SF Pro Display Semibold";
+  color: #d13131;
+  font-size: 44px;
+  letter-spacing: 0.01em;
+}
+
+.body500 {
+  font-family: "SF Pro Display Medium";
+  color: #d13131;
+  letter-spacing: 0.01em;
+}
+
+@media only screen and (max-width: 800px) {
+  .container500 {
+    padding-left: 7%;
+    padding-top: 5vh;
+    max-width: 75vw;
+  }
+
+  .title500 {
+    font-family: "SF Pro Display Semibold";
+    color: #d13131;
+    font-size: 30px;
+    letter-spacing: 0.01em;
+  }
+  
+  .body500 {
+    font-family: "SF Pro Display Medium";
+    color: #d13131;
+    letter-spacing: 0.01em;
+  }
+}
