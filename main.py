@@ -1,11 +1,11 @@
 ''' 
 for 1.0 release:
-1 fix acceptable_range for albums
 2 fix escape characters
 
 for later releases:
 1 try and fix the mess of "None" at the beginning. it looks terrible.
 2 come to terms that this code is bad.
+3 fix all the preset options?
 '''
 
 import json
