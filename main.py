@@ -194,6 +194,8 @@ def home():
     artistloadlimit = 1000
     display_username = str(random.choice(display_username_randomarray) + str(custom_gen_number()))
     daterange_proper = "over the past month"
+    acceptablerange_proper = top_artists_acceptablerange
+    selection_mode = "artists"
     
     if request.method == "POST":
         display_username = str(request.form["username"])
