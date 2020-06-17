@@ -1,11 +1,9 @@
-''' 
-for 1.0 release:
-2 fix escape characters
-
-for later releases:
-1 try and fix the mess of "None" at the beginning. it looks terrible.
-2 come to terms that this code is bad.
-3 fix all the preset options?
+'''
+Still need to fix
+- fix the escape characters!!! (ex site shows Tyler; the Creator)
+- fix the mess of "None" at the beginning. it looks terrible.
+- make better premade usernames?
+- switch chart apis? (google charts api is quite limiting and doesnt let you choose what goes on the labels)
 '''
 
 import json
@@ -191,11 +189,12 @@ def home():
     uni_array_playcount = top_artists_playcount_rawarray
 
     daterange = ""
+    # artist load limit 1000 = load total data
     artistloadlimit = 1000
     display_username = str(random.choice(display_username_randomarray) + str(custom_gen_number()))
     daterange_proper = "over the past month"
-    acceptablerange_proper = top_artists_acceptablerange
     selection_mode = "artists"
+    acceptablerange_proper = 25
     
     if request.method == "POST":
         display_username = str(request.form["username"])
@@ -209,8 +208,7 @@ def home():
             uni_array_playcount = top_artists_playcount_rawarray
             selection_mode = "artists"
             # acceptable range for artists
-            if artistloadlimit != 1000:
-                acceptablerange_proper = top_artists_acceptablerange
+            acceptablerange_proper = top_artists_acceptablerange
 
         if loadselect == "albums":
             result = load_top_albums(display_username, artistloadlimit, daterange)
@@ -218,8 +216,7 @@ def home():
             uni_array_playcount = top_albums_playcount_rawarray
             selection_mode = "albums"
             # acceptable range for albums
-            if artistloadlimit != 1000:
-                acceptablerange_proper = top_albums_acceptablerange
+            acceptablerange_proper = top_albums_acceptablerange
 
     # converts short form from api into proper english
     if daterange == "7day":
