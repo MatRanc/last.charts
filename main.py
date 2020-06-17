@@ -1,8 +1,11 @@
-''' for 1.0 release:
-1neeed to make the little text at the top sync with if its showing artists or albums
-2fix escape characters
-3try and fix the mess of "None" at the beginning. it looks terrible.
-4come to terms that this code is bad.
+''' 
+for 1.0 release:
+1 fix acceptable_range for albums
+2 fix escape characters
+
+for later releases:
+1 try and fix the mess of "None" at the beginning. it looks terrible.
+2 come to terms that this code is bad.
 '''
 
 import json
@@ -202,11 +205,19 @@ def home():
             result = load_top_artists(display_username, artistloadlimit, daterange)
             uni_array_top_named = top_artists_rawarray
             uni_array_playcount = top_artists_playcount_rawarray
+            selection_mode = "artists"
+            # acceptable range for artists
+            if artistloadlimit != 1000:
+                acceptablerange_proper = top_artists_acceptablerange
 
         if loadselect == "albums":
             result = load_top_albums(display_username, artistloadlimit, daterange)
             uni_array_top_named = top_albums_rawarray
             uni_array_playcount = top_albums_playcount_rawarray
+            selection_mode = "albums"
+            # acceptable range for albums
+            if artistloadlimit != 1000:
+                acceptablerange_proper = top_albums_acceptablerange
 
     # converts short form from api into proper english
     if daterange == "7day":
@@ -237,19 +248,14 @@ def home():
     if daterange == "overall":
         daterange_proper = "of all time"
 
-    # for artist count
-    if artistloadlimit == 1000:
-        top_artists_acceptablerange_proper = ""
-    else:
-        top_artists_acceptablerange_proper = top_artists_acceptablerange
-
     return render_template(
         "index.html", 
         top_artists_rawarray=json.dumps(uni_array_top_named), 
         top_artists_playcount_rawarray=json.dumps(uni_array_playcount), 
         username=display_username, 
-        top_artists_acceptablerange_proper=top_artists_acceptablerange_proper, 
-        daterange_proper=daterange_proper
+        acceptablerange_proper=acceptablerange_proper, 
+        daterange_proper=daterange_proper,
+        selection_mode=selection_mode,
     )
 
 if __name__ == "__main__":
